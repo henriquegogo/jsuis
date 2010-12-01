@@ -8,4 +8,4 @@
 * ComboBox
 * Forms
 * Toolbars and Menus
-* Drag and Drop
+* Drag and Drops
