@@ -78,5 +78,10 @@ $.fn.extend({
     table.append('<thead></thead><tbody></tbody>');
     $('thead', table).append('<tr>'+headlines+'</tr>');
     $('tbody', table).append(bodylines);
+  },
+  serializeGrid: function() {
+    $.each($('tbody tr', this), function() {
+      console.log($(this));
+    });
   }
 });
