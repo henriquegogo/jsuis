@@ -59,14 +59,17 @@ $.fn.extend({
   fillGrid: function(json) {
     var table = $('table',this);
     var cols = '', bodylines = '', headlines = '';
-    $.each(json.head, function() {
-      headlines += '<th>'+this+'</th>';
+    var col_ids = [];
+    $.each(json.head, function(key, value) {
+      col_ids.push(key);
+      headlines += '<th col-id="'+key+'">'+value+'</th>';
     });
     $.each(json.body, function() {
-      $.each(this, function() {
-        cols += '<td>'+this+'</td>';
+      var line_id = this.id;
+      $.each(this.cols, function(index) {
+        cols += '<td col-id="'+col_ids[index]+'" line-id="'+line_id+'">'+this+'</td>';
       });
-      bodylines += '<tr>'+cols+'</tr>';
+      bodylines += '<tr line-id="'+line_id+'">'+cols+'</tr>';
       cols = '';
     });
     table.append('<thead></thead><tbody></tbody>');
