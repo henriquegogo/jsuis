@@ -54,3 +54,23 @@ $(document).ready(function() {
     }
   });
 });
+
+$.fn.extend({
+  fillGrid: function(json) {
+    var table = $('table',this);
+    var cols = '', bodylines = '', headlines = '';
+    $.each(json.head, function() {
+      headlines += '<th>'+this+'</th>';
+    });
+    $.each(json.body, function() {
+      $.each(this, function() {
+        cols += '<td>'+this+'</td>';
+      });
+      bodylines += '<tr>'+cols+'</tr>';
+      cols = '';
+    });
+    table.append('<thead></thead><tbody></tbody>');
+    $('thead', table).append('<tr>'+headlines+'</tr>');
+    $('tbody', table).append(bodylines);
+  }
+});

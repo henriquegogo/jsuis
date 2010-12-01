@@ -8,6 +8,16 @@
   <script src="jquery-1.4.4.min.js" type="text/javascript"></script>
   <script src="jquery-ui-1.8.6.custom.min.js" type="text/javascript"></script>
   <script src="raduiken.js" type="text/javascript"></script>
+
+  <script>
+    var json_grid = {'head':['Primeira coluna','Segunda','Terceira','Quarta'],
+                     'body':[['Conteúdo um', 'Conteúdo outro', 'Mais um conteúdo', 'E este também'],
+                     ['Segundo Conteúdo', 'Conteúdo outro', 'Mais um conteúdo', 'E este também']]};
+    
+    $(document).ready(function() {
+      $('.grid').fillGrid(json_grid);
+    });
+  </script>
 </head>
 <body>
   <div class='window' title='Título da janela' style='width: 700px' drag='true' close-button='true'>
@@ -24,58 +34,7 @@
     </select>
     <br><br>
     <div class='grid'>
-      <table>
-        <thead>
-          <tr>
-            <th>É um</th>
-            <th>É outro</th>
-            <th>É outro</th>
-            <th>É outro</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Conteúdo um</td>
-            <td>Conteúdo outro</td>
-            <td>Conteúdo outro</td>
-            <td>Conteúdo outro</td>
-          </tr>
-          <tr>
-            <td>Conteúdo um</td>
-            <td>
-              <select>
-                <option>Opção</option>
-                <option>Opção 2</option>
-              </select>
-            </td>
-            <td>Conteúdo outro</td>
-            <td>Conteúdo outro</td>
-          </tr>
-          <tr>
-            <td>Conteúdo um</td>
-            <td>Conteúdo outro</td>
-            <td>Conteúdo outro</td>
-            <td>Conteúdo outro</td>
-          </tr>
-          <tr>
-            <td>Conteúdo um</td>
-            <td>Conteúdo outro</td>
-            <td>Conteúdo outro</td>
-            <td>Conteúdo outro</td>
-          </tr>
-          <tr>
-            <td>Conteúdo um</td>
-            <td>Conteúdo um</td>
-            <td>
-              <select>
-                <option>Opção</option>
-                <option>Opção 2</option>
-              </select>
-            </td>
-            <td>Conteúdo outro</td>
-          </tr>
-        </tbody>
-      </table>
+      <table></table>
       <ul class="toolbar">
         <li><button>Primeira</button></li>
         <li><button>Segunda</button></li>
