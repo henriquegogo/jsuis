@@ -35,20 +35,21 @@ $(document).ready(function() {
   /* Forms */
   $.each($('input[type="text"]'), function() {
     if ($(this).attr('title')) {
-      $(this).before("<div class='field'></div>");
+      $(this).wrap("<div class='field' />");
       $(this).before("<label for='"+$(this).attr('id')+"'>"+$(this).attr('title')+"</label><br>");
-      $(this).after("<br><br>");
     }
   });
   $.each($('input[type="password"]'), function() {
     if ($(this).attr('title')) {
+      $(this).wrap("<div class='field' />");
       $(this).before("<label for='"+$(this).attr('id')+"'>"+$(this).attr('title')+"</label><br>");
-      $(this).after("<br><br>");
     }
   });
   $.each($('input[type="checkbox"]'), function() {
     if ($(this).attr('title')) {
-      $(this).after("<label for='"+$(this).attr('id')+"'>"+$(this).attr('title')+"</label><br><br>");
+      $(this).wrap("<div class='field' />");
+      $(this).before("<br>");
+      $(this).after("<label for='"+$(this).attr('id')+"'>"+$(this).attr('title')+"</label>");
     }
   });
   $.each($('input'), function() {
@@ -85,3 +86,7 @@ $.fn.extend({
     });
   }
 });
+
+function alert(message) {
+  document.write('message');
+}
