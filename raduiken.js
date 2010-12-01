@@ -15,7 +15,9 @@ $(document).ready(function() {
   $.each($('.tabs'), function() {
     $(this).prepend("<ul class='tabbar'></ul>");
     $.each($('.tab', this), function() {
-      $('ul.tabbar', $(this).parent()).append("<li><a href='#"+$(this).attr('id')+"'>"+$(this).attr('title')+"</a></li>");
+      if ($(this).attr('load')) { load_attrib = ' load="'+$(this).attr('load')+'"'; }
+      else { load_attrib = ''; }
+      $('ul.tabbar', $(this).parent()).append("<li><a href='#"+$(this).attr('id')+"'"+load_attrib+">"+$(this).attr('title')+"</a></li>");
       $(this).hide();
     });
     $('.tabbar li:first', this).addClass('active');
@@ -26,6 +28,7 @@ $(document).ready(function() {
       $($(this).parent()).addClass('active');
       $('div.tab',$(this).parent().parent().parent()).hide();
       $($(this).attr('href')).show();
+      $($(this).attr('href')).load($(this).attr('load'));
       console.log($(this));
     });
   });

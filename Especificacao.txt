@@ -9,12 +9,3 @@
 * Forms
 * Toolbars and Menus
 * Drag and Drop
-
-<table class='grid'></table>
-<div class='tabs'></div>
-<div class='window'></div>
-<ul class='tree'></ul>
-<select class='combobox'></select>
-<form></form>
-<ul class='menu'></ul>
-<ul class='toolbar'></ul>
