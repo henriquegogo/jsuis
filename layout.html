@@ -11,9 +11,9 @@
   <script src="raduiken.js" type="text/javascript"></script>
 
   <script>
-    var json_grid = {'head':{'primeira':'Primeira coluna','segunda':'Segunda','terceira':'Terceira','quarta':'Quarta'},
-                     'body':[{'id':'1','cols':['Conteúdo um', 'Conteúdo outro', 'Mais um conteúdo', 'E este também']},
-                             {'id':'2','cols':['Segundo Conteúdo', 'Conteúdo outro', 'Mais um conteúdo', 'E este também']}]};
+    var json_grid = {'head':{'first':'First column','second':'Second','third':'Third','fourth':'Fourth'},
+                     'body':[{'id':'1','cols':['Content one', 'Other content', 'One more', 'This too']},
+                             {'id':'2','cols':['Second line', 'Yes, second', 'More column', 'Last column']}]};
     
     $(document).ready(function() {
       $('.grid').fillGrid(json_grid);
@@ -21,25 +21,21 @@
   </script>
 </head>
 <body>
-  <div class='window' title='Título da janela' style='width: 70%'>
+  <h1 class='center'>RADUIKEN - Rapid Application Development User Interface and Wathever</h1>
+  <div class='window' title='Simple examples'>
     <ul class='menu'>
-      <li><a href=''>Menu 1</a></li>
-      <li><a href=''>Menu segundo</a></li>
-      <li><a href=''>Outro menu</a></li>
-      <li><a href=''>Ajuda</a></li>
+      <li><a href=''>File</a></li>
+      <li><a href=''>Edit</a></li>
+      <li><a href=''>Tools</a></li>
+      <li><a href=''>Help</a></li>
     </ul>
-    Aqui são informações necessárias às pessoas<br>
-    <select>
-      <option>Opção</option>
-      <option>Opção 2 da vida das coisas dos meninos</option>
-    </select>
-    <br><br>
+    <p>Some informations, help, or introduction. Plain text.</p>
     <div class='grid'>
       <table></table>
       <ul class="toolbar">
-        <li><button>Primeira</button></li>
-        <li><button>Segunda</button></li>
-        <li><input type="text" value="Search..."></li>
+        <li><button><< Previous</button></li>
+        <li><input type="text" size="2" value="1"></li>
+        <li><button>Next >></button></li>
         <li class='right'><a href=''>Refresh</a></li>
       </ul>
     </div>
@@ -54,32 +50,32 @@
     </div>
     <br>
     <form>
-      <input type='text' title='Nome completo' id='nome'>
-      <input type='text' title='Sua senha' id='password'>
-      <input type="checkbox" title="Cheque as coisas" id='checa'>
+      <input type='text' title='Your name' id='name'>
+      <input type='password' title='Password' id='password'>
+      <input type="checkbox" title="Yes, I agree" id='agree'>
       <div class='killfloat'></div>
-      <input type='text' title='Nome completo' id='nome'>
-      <input type='text' title='Sua senha' id='password'>
-      <input type="checkbox" title="Cheque as coisas" id='checa'>
+      <input type='text' title='Street' id='street'>
+      <input type='text' title='Country' id='country'>
+      <select title='Any option?'>
+        <option>First option, or not</option>
+        <option>Other option for you and me</option>
+      </select>
       <div class='killfloat'></div>
-      <input type="submit" value="Enviar">
-      <button>Apagar</button>  
+      <input type="submit" value="Send">
+      <button>Clear</button>  
     </form>
   </div>
   <div class='window' style='width: 20%'>
-    <!--lorem-->
     <p>Aliquet dolor felis at lorem. Pellentesque et lacus. Vestibulum tempor
     lectus at est. Pellentesque habitant morbi tristique senectus et netus et
     malesuada fames ac turpis egestas. Sed vitae eros. Nulla pulvinar turpis eget
     nunc. Sed bibendum pellentesque nunc. Integer tristique, lorem ac faucibus
     tempor, lorem dolor mollis turpis, a consectetuer nunc justo ac nisl.</p>
-
     <p>Nam vitae purus. Cum sociis natoque penatibus et magnis dis parturient
     montes, nascetur ridiculus mus. Praesent semper magna. In eu justo. Nunc vitae
     risus nec sem scelerisque consequat. In hac habitasse platea dictumst. Nam
     posuere ultricies turpis. Pellentesque a pede. Duis sed tortor. Phasellus
     egestas porta lectus. Aliquam.</p>
-    <!--/lorem-->
   </div>
   <div class='window' title='Atributes and other things'>
     <p>Aliquet dolor felis at lorem. Pellentesque et lacus. Vestibulum tempor
@@ -87,9 +83,6 @@
     malesuada fames ac turpis egestas. Sed vitae eros. Nulla pulvinar turpis eget
     nunc. Sed bibendum pellentesque nunc. Integer tristique, lorem ac faucibus
     tempor, lorem dolor mollis turpis, a consectetuer nunc justo ac nisl.</p>
-    <div class='grid'>
-      <table></table>
-    </div>
     <p>Nam vitae purus. Cum sociis natoque penatibus et magnis dis parturient
     montes, nascetur ridiculus mus. Praesent semper magna. In eu justo. Nunc vitae
     risus nec sem scelerisque consequat. In hac habitasse platea dictumst. Nam

@@ -33,13 +33,13 @@ $(document).ready(function() {
     });
   });
   /* Forms */
-  $.each($('input[type="text"]'), function() {
-    if ($(this).attr('title')) {
+  $.each($('input'), function() {
+    if (($(this).attr('type') == 'text' || $(this).attr('type') == 'password') && $(this).attr('title')) {
       $(this).wrap("<div class='field' />");
       $(this).before("<label for='"+$(this).attr('id')+"'>"+$(this).attr('title')+"</label><br>");
     }
   });
-  $.each($('input[type="password"]'), function() {
+  $.each($('select'), function() {
     if ($(this).attr('title')) {
       $(this).wrap("<div class='field' />");
       $(this).before("<label for='"+$(this).attr('id')+"'>"+$(this).attr('title')+"</label><br>");
