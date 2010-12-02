@@ -6,8 +6,7 @@
   <title>Raduiken</title>
   <link rel="stylesheet" href="raduiken.css" type="text/css">
   <script src="jquery-1.4.4.min.js" type="text/javascript"></script>
-  <script src="jquery-ui-1.8.6.custom.min.js" type="text/javascript"></script>
-  <script src="json2.js" type="text/javascript"></script>
+  <script src="jquery-serializeForm.min.js" type="text/javascript"></script>
   <script src="raduiken.js" type="text/javascript"></script>
 
   <script>
@@ -56,7 +55,7 @@
       <div class='killfloat'></div>
       <input type='text' title='Street' id='street'>
       <input type='text' title='Country' id='country'>
-      <select title='Any option?'>
+      <select title='Any option?' name='options' multiple>
         <option>First option, or not</option>
         <option>Other option for you and me</option>
       </select>
