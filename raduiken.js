@@ -17,7 +17,7 @@ $(document).ready(function() {
     $.each($('.tab', this), function() {
       if ($(this).attr('load')) { load_attrib = ' load="'+$(this).attr('load')+'"'; }
       else { load_attrib = ''; }
-      $('ul.tabbar', $(this).parent()).append("<li><a href='javascript:' rel='#"+$(this).attr('id')+"'"+load_attrib+">"+$(this).attr('title')+"</a></li>");
+      $('ul.tabbar', $(this).parent()).append("<li><a href='#"+$(this).attr('id')+"'"+load_attrib+">"+$(this).attr('title')+"</a></li>");
       $(this).hide();
     });
     $('.tabbar li:first', this).addClass('active');
@@ -27,9 +27,9 @@ $(document).ready(function() {
       $('li',$(this).parent().parent()).removeClass('active');
       $($(this).parent()).addClass('active');
       $('div.tab',$(this).parent().parent().parent()).hide();
-      $($(this).attr('rel')).show();
-      $($(this).attr('rel')).load($(this).attr('load'));
-      console.log($(this));
+      $($(this).attr('href')).show();
+      $($(this).attr('href')).load($(this).attr('load'));
+      return false;
     });
   });
   /* Forms */
