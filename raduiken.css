@@ -10,7 +10,7 @@ html {
   background-attachment: fixed;
 }
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 a {
   color: #000;
