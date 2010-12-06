@@ -1,18 +1,16 @@
 jQuery.fn.extend({
-	objective: function() {
-    var result = [];
-    this.children('[name]').each(function() {
-      var attrib = {};
-      attrib.name = $(this).attr('name');
-      attrib.value = $(this).text() ? $(this).text() : $(this).val();
-      result.push(attrib);
+  objective: function() {
+    var result = {};
+    jQuery('> * > [name]', this).each(function() {
+      if (true) {
+        var key = $(this).attr('name');
+        result[key] = (jQuery('[name]', this).size() > 0 && !jQuery.isArray($(this).val())) ? jQuery(this).objective() :
+                      jQuery(this).val() ? jQuery(this).val() : jQuery(this).text();
+      }
     });
     return result;
   }
 });
 
-//  $(this).children('[name]') ? $(this).children('[name]').each(function() {
-//    console.log($(this).html() ? $(this).html() : $(this).val());
-//    $(this).objective();
-//  }) : console.log($(this).html() ? $(this).html() : $(this).val());
 
+//!($(this).parents('[name]').size() > 0) || (jQuery(jQuery(this).parents('[name]')[0]).attr('name') == parent)

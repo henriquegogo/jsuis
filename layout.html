@@ -5,7 +5,7 @@
 
   <title>Raduiken</title>
   <link rel="stylesheet" href="raduiken.css" type="text/css">
-  <script src="jquery-1.4.4.js" type="text/javascript"></script>
+  <script src="jquery-1.4.4.min.js" type="text/javascript"></script>
   <script src="jquery-objective.js" type="text/javascript"></script>
   <script src="raduiken.js" type="text/javascript"></script>
 
@@ -44,12 +44,30 @@
         <li class='right'><a href=''>Refresh</a></li>
       </ul>
     </div>
-    <table id="agride">
+    <table id="agride" name='grid'>
       <tbody>
         <tr name='linha1'><td name='coluna1'>Primeira</td><td name='coluna2'><input name='valor' value='Input de segunda'></td></tr>
-        <tr name='linha2'><td name='coluna1'>Primeira</td><td>Segunda</td></tr>
+        <tr name='linha2'><td name='colunae'><b>Primeira</b></td><td>Segunda</td></tr>
         <tr name='linha3'><td>Primeira</td><td>Segunda</td></tr>
-        <tr><td>Primeira</td><td>Segunda</td></tr>
+        <tr name='linha4'><td>Primeira</td>
+          <td>
+            <form id='formu' name='formulario'>
+              <input type='text' title='Your name' name='name'>
+              <input type='password' title='Password' name='password'>
+              <input type="checkbox" title="Yes, I agree" name='agree'>
+              <div class='killfloat'></div>
+              <input type='text' title='Street' name='street'>
+              <input type='text' title='Country' name='country'>
+              <select title='Any option?' name='options' multiple>
+                <option>First option, or not</option>
+                <option>Other option for you and me</option>
+              </select>
+              <div class='killfloat'></div>
+              <input type="submit" value="Send">
+              <button>Clear</button>  
+            </form>
+          </td>
+        </tr>
       </tbody>
     </table>
     <br>
@@ -62,7 +80,7 @@
       </div>
     </div>
     <br>
-    <form>
+    <form id='formulario' name='formulario'>
       <input type='text' title='Your name' name='name'>
       <input type='password' title='Password' name='password'>
       <input type="checkbox" title="Yes, I agree" name='agree'>
