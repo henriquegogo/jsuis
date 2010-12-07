@@ -1,7 +1,7 @@
 jQuery.fn.extend({
   objective: function() {
     var result = {};
-    jQuery('> * > [name]', this).each(function() {
+    jQuery('[name]:first', this).each(function() {
       if (true) {
         var key = $(this).attr('name');
         result[key] = (jQuery('[name]', this).size() > 0 && !jQuery.isArray($(this).val())) ? jQuery(this).objective() :
