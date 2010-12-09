@@ -1,16 +1,47 @@
 jQuery.fn.extend({
   objective: function() {
     var result = {};
-    jQuery('[name]:first', this).each(function() {
-      if (true) {
-        var key = $(this).attr('name');
-        result[key] = (jQuery('[name]', this).size() > 0 && !jQuery.isArray($(this).val())) ? jQuery(this).objective() :
-                      jQuery(this).val() ? jQuery(this).val() : jQuery(this).text();
-      }
+      jQuery('> *', this).each(function() {
+      var key = $(this).attr('name');
+      result[key] = (jQuery('[name]', this).size() > 0 && !jQuery.isArray($(this).val())) ? jQuery(this).objective() :
+                    jQuery(this).val() ? jQuery(this).val() : jQuery(this).text();
     });
     return result;
   }
 });
 
 
-//!($(this).parents('[name]').size() > 0) || (jQuery(jQuery(this).parents('[name]')[0]).attr('name') == parent)
+/*
+HAMOM
+function (elemento) {
+  var filhosComName = []
+    var todosOsFilhos = $('> *', elemento)
+
+    for (var i = 0; i < todosOsFilhos.length; i++) {
+      if ($(todosOsFilhos[i]).attr('name'))
+        filhosComName.push(todosOsFilhos[i])
+      else if ($(todosOsFilhos[i]).children().length > 0) {
+        var netos = selecionaFilhosComName(todosOsFilhos[i])
+
+          filhosComName = filhosComName.concat(netos);
+      }
+    }
+
+  return filhosComName
+} 
+*/
+
+/*
+GOGO
+jQuery.fn.extend({
+  objective: function() {
+    var result = {};
+      jQuery('[name]', this).each(function() {
+      var key = $(this).attr('name');
+      result[key] = (jQuery('[name]', this).size() > 0 && !jQuery.isArray($(this).val())) ? jQuery(this).objective() :
+                    jQuery(this).val() ? jQuery(this).val() : jQuery(this).text();
+    });
+    return result;
+  }
+});
+*/

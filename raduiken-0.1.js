@@ -36,12 +36,14 @@ $(document).ready(function() {
   $.each($(':input'), function() {
     if (!$(this).attr('name') && $(this).attr('id')) {
       $(this).attr('name', $(this).attr('id'));
+    } else if ($(this).attr('name') && !$(this).attr('id')) {
+      $(this).attr('id', 'field_' + $(this).attr('name'));
     } else if (!$(this).attr('name') && $(this).attr('title')) {
       $(this).attr('name', urlFriendly($(this).attr('title')));
       $(this).attr('id', 'field_' + urlFriendly($(this).attr('title')));
     }
     $(this).wrap("<div class='field' />");
-    if ($(this).attr('type') == 'checkbox') {
+    if ($(this).attr('type') == 'checkbox' || $(this).attr('type') == 'radio') {
       $(this).before("<br>");
       $(this).after("<label for='"+$(this).attr('id')+"'>"+$(this).attr('title')+"</label>");
     } else if ($(this).attr('type') == 'submit' || $(this).attr('type') == 'button') {
@@ -91,6 +93,7 @@ urlFriendly = function(s){
   r = r.replace(new RegExp("œ", 'g'),"oe"); 
   r = r.replace(new RegExp("[ùúûü]", 'g'),"u"); 
   r = r.replace(new RegExp("[ýÿ]", 'g'),"y"); 
+  r = r.replace(new RegExp("[?!@#$%&*:;]", 'g'),""); 
   r = r.replace(new RegExp("\\W", 'g'),"_"); 
   return r; 
 };
