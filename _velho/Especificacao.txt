@@ -1,0 +1,34 @@
+[Components]
+* Grids
+* Tabs
+* Charts
+* Windows
+* Trees
+* Layout Managers
+* ComboBox
+* Forms
+* Toolbars and Menus
+* Drag and Drops
+
+[user/edit.html]
+<div class='window' id='edit'>
+  <form id='user'>
+    <input type='text' name='name' name='name'>
+    <input type='text' name='nick' name='nick'>
+    <input type='text' name='age' name='age'>
+    <input type='submit' value='Send'>
+  </form>
+</div>
+
+[user/controller.js]
+function edit() {
+  var form = {};
+  form._selector = '#user';
+  form.name = 'Henrique';
+  form.nick = 'Gogó';
+  form.age = '25';
+  form.things = ['some','other'];
+
+  render('edit',[form]);
+}
+
