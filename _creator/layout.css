@@ -1,0 +1,32 @@
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  height: 100%;
+}
+table.panel,
+table.panel table.line {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+table.panel table.line td {
+  vertical-align: top;
+  border: 1px solid #AAB;
+  border-top: none;
+}
+table.panel table.line td:hover {
+  cursor: crosshair;
+  background: #FFB;
+}
+table.panel tr.newline {
+  height: 10px;
+}
+table.panel tr.newline.top {
+  border-bottom: 1px solid #AAB;
+}
+table.panel tr.newline:hover {
+  cursor: crosshair;
+  background: #FFB;
+}
