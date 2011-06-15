@@ -1,13 +1,6 @@
-// $.fn.extend({
-//   serializeGrid: function() {
-//     $.each($('tbody tr', this), function() {
-//       console.log($(this));
-//     });
-//   }
-// });
-
+// Template function
 // Forked from https://gist.github.com/860240
-function tmpl(str, data) {
+var template = function(str, data) {
   var value = "var out = ''; out+=" + "'" +
 
   str.replace(/[\r\t\n]/g, " ")
@@ -20,4 +13,13 @@ function tmpl(str, data) {
     + "'; return out;";
 
   return new Function("data", value);
+}
+
+var load = function(path, callback) {
+  var ajax = new XMLHttpRequest;
+  ajax.onreadystatechange = function() {
+    if (ajax.readyState == 4) callback(ajax.responseText);
+  };
+  ajax.open("GET", path);
+  ajax.send();
 }
