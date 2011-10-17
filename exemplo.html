@@ -19,17 +19,17 @@
 <body>
   <form>
     <section>
-      <input type="text" name="busca" data-label="Busca">
-      <input type="text" name="qualquercoisa" data-label="Qualquer coisa">
+      <widget type="input" name="busca" data-label="Busca"></widget>
+      <widget type="input" name="qualquercoisa" data-label="Qualquer coisa"></widget>
     </section>
     <br>
     <section>
-      <input type="text" name="nome" data-label="Primeiro nome">
+      <widget type="input" name="nome" data-label="Primeiro nome"></widget>
       <br>
-      <input type="text" name="sobrenome" data-label="Sobrenome">
+      <widget type="input" name="sobrenome" data-label="Sobrenome"></widget>
     </section>
     <section>
-      <textarea data-label="Adonde"></textarea>
+      <widget type="textarea" height="400" data-label="Adonde"></widget>
     </section>
     <br>
     <input type="submit">
@@ -37,25 +37,11 @@
 </body>
 <script src="jquery.js" type="text/javascript"></script>
 <script>
-  $.each($(':input:not(:button, :submit)'), function() {
-    var type = $(this).attr('type'),
-        id   = $(this).attr('id'),
-        name = $(this).attr('name'),
-        label_text = $(this).attr('data-label');
+  $.each($('widget'), function() {
+    var type = $(this).attr('type');
 
-    // Set ID = NAME if ID dont exist
-    if (name && !id)
-      $(this).attr('id', name + '-id');
-
-    id = ($(this).attr('id') || '');
-
-    // Create input widget
-    var label = $("<label for='" + id + "'>" + (label_text || '&nbsp;') + "</label>");
-
-    $(this).wrap("<div class='widget' />");
-
-    (type == 'checkbox' || type == 'radio') ?
-      $(this).after(label) : $(this).before(label);
+    $(this).load('widgets.html #' + type + ' *', function() {
+    });
   });
 </script>
 </html>
