@@ -55,10 +55,10 @@
     return fn(data);
   };
 
-  $.each($('widget'), function() {
-    var type = $(this).attr('type');
+  $.get('widgets.html', function(templates) {
+    $.each($('widget'), function() {
+      var widget = $('[data-widget=' + $(this).attr('type') + ']', templates);
 
-    $(this).load('widgets.html [data-widget=' + type + ']', function() {
       var attributes = this.attributes;
       var data = {};
 
@@ -67,12 +67,11 @@
           data[attributes[i].name] = attributes[i].value;
       }
 
-      var interpolated = viewpower( $(this).html(), data );
+      var interpolated = viewpower( widget[0].outerHTML, data );
 
       $(this).replaceWith(interpolated);
     });
   });
-
 })(jQuery);
 </script>
 </html>
