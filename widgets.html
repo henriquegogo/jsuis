@@ -1,13 +1,19 @@
 <widgets>
 
 <div data-widget="input" class="field">
-  <label>{{= label }}</label>
-  <input type="text" value="{{= html}}">
+  <label><%= label %></label>
+  <%= element %>
 </div>
 
 <div data-widget="textarea" class="field">
-  <label>{{= label }}</label>
-  <textarea>{{= html }}</textarea>
+  <label><%= label %></label>
+  <textarea style="height: <%= height %>"><%= html %></textarea>
 </div>
+
+<ul data-widget="lista">
+  <% for () { %>
+    <li></li>
+  <% } %>
+</ul>
 
 </widgets>

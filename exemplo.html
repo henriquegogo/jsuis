@@ -5,10 +5,10 @@
 
   <title>Guiga</title>
   <style>
-    widget, section {
+    [data-widget], section {
       float: left;
     }
-    widget label {
+    label {
       display: block;
     }
     br {
@@ -19,19 +19,19 @@
 <body>
   <form>
     <section>
-      <widget type="input" name="busca" label="Busca">Qualquer campo que se queira</widget>
-      <widget type="input" name="qualquercoisa" label="Qualquer coisa"></widget>
+      <input data-widget="input" data-label="Busca" name="busca">
+      <input data-widget="input" data-label="Qualquer coisa" name="qualquercoisa">
     </section>
     <br>
     <section>
-      <widget type="input" name="nome" label="Primeiro nome"></widget>
+      <input data-widget="input" data-label="Primeiro nome" name="nome">
       <br>
-      <widget type="input" name="sobrenome" label="Sobrenome"></widget>
+      <input data-widget="input" data-label="Sobrenome" name="sobrenome">
     </section>
     <section>
-      <widget type="textarea" label="Este é um textarea">
+      <div data-widget="textarea" data-label="Este é um textarea" data-height="150px">
         Esse é um textarea
-      </widget>
+      </div>
     </section>
     <br>
     <input type="submit">
@@ -46,11 +46,11 @@
       "with(obj){p.push('" +
 
       str.replace(/[\r\t\n]/g, " ")
-         .split("{{").join("\t")
-         .replace(/((^|}})[^\t]*)'/g, "$1\r")
-         .replace(/\t=(.*?)}}/g, "',$1,'")
+         .split("<%").join("\t")
+         .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+         .replace(/\t=(.*?)%>/g, "',$1,'")
          .split("\t").join("');")
-         .split("}}").join("p.push('")
+         .split("%>").join("p.push('")
          .split("\r").join("\\'")
          + "');}return p.join('');");
 
@@ -58,20 +58,16 @@
   };
 
   $.get('widgets.html', function(templates) {
-    $.each($('widget'), function() {
-      var widget = $('[data-widget=' + $(this).attr('type') + ']', templates);
+    $.each($('[data-widget]'), function() {
+      var widget = $('[data-widget=' + $(this).attr('data-widget') + ']', templates)[0]
+                     .outerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 
-      var attributes = this.attributes;
-      var data = {};
-
-      for (var i in attributes) {
-        if (attributes[i].value)
-          data[attributes[i].name] = attributes[i].value;
-      }
+      var data = $(this).data();
 
       data['html'] = $.trim($(this).html());
+      data['element'] = $(this)[0].outerHTML;
 
-      var interpolated = viewpower( widget[0].outerHTML, data );
+      var interpolated = viewpower( widget, data );
 
       $(this).replaceWith(interpolated);
     });
