@@ -19,7 +19,7 @@
 <body>
   <form>
     <section>
-      <widget type="input" name="busca" label="Busca"></widget>
+      <widget type="input" name="busca" label="Busca">Qualquer campo que se queira</widget>
       <widget type="input" name="qualquercoisa" label="Qualquer coisa"></widget>
     </section>
     <br>
@@ -29,7 +29,9 @@
       <widget type="input" name="sobrenome" label="Sobrenome"></widget>
     </section>
     <section>
-      <widget type="textarea" height="400" label="Adonde"></widget>
+      <widget type="textarea" label="Este é um textarea">
+        Esse é um textarea
+      </widget>
     </section>
     <br>
     <input type="submit">
@@ -66,6 +68,8 @@
         if (attributes[i].value)
           data[attributes[i].name] = attributes[i].value;
       }
+
+      data['html'] = $.trim($(this).html());
 
       var interpolated = viewpower( widget[0].outerHTML, data );
 
