@@ -1,0 +1,42 @@
+<script type="text/html" id="field">
+    <div class="field">
+        <label><%= label %></label>
+        <input type="text" value="<%= value %>">
+    </div>
+</script>
+
+<script type="text/html" id="checkbox">
+    <div class="field">
+        <input type="checkbox" value="<%= value %>">
+        <label><%= label %></label>
+    </div>
+</script>
+
+<script type="text/html" id="list">
+    <ul>
+        <% for (var i in data) { %>
+            <li><%= data[i] %></li>
+        <% } %>
+    </ul>
+</script>
+
+<script type="text/html" id="grid">
+    <table>
+        <thead>
+            <tr>
+                <% for (var title in data[0]) { %>
+                    <th><%= title %></th>
+                <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (var line in data) { %>
+                <tr>
+                    <% for (var col in data[line]) { %>
+                        <td><%= data[line][col] %></td>
+                    <% } %>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</script>
