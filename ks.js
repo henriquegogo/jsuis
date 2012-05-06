@@ -44,9 +44,36 @@
         return returnObject;
     }
 
+    function attributesAsObject(target, options) {
+        var data = {};
+        var attributes = target[0].attributes;
+        var attributesString = "";
+        target.removeAttr('rel');
+        var element = $("<div>").append(target.clone()).html();
+
+        for (var i = 0; i < attributes.length; i++) {
+            attributesString += attributes[i].name + "=\"" + attributes[i].value + "\" ";
+
+            if (attributes[i].value)
+                data[attributes[i].name] = attributes[i].value;
+        }
+
+        data['html'] = $.trim(target.html());
+        data['element'] = element;
+        data['attributes'] = attributesString;
+        data['tagname'] = target.prop('tagName').toLowerCase();
+
+        $.extend(data, target.data());
+        $.extend(data, options);
+
+        return data;
+    }
+
     $(function() {
         var ks = {};
         ks.components = loadComponents();
+
+        console.log( attributesAsObject( $('input') ) );
 
         window.ks = ks;
     });    
