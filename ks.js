@@ -18,6 +18,10 @@
         return data ? fn( data ) : fn;
     };
 
+    function stringToArray(string) {
+        return (typeof string != "undefined") ? JSON.parse(string.replace(/\'/g, '"')) : [];
+    }
+
     function loadComponents() {
         var returnObject = {}
 
@@ -30,11 +34,7 @@
                 var viewTemplate = element.html();
 
                 returnObject[id] = function(viewValues) {
-                    if (viewValues) {
-                        return tmpl(viewTemplate, viewValues);
-                    } else {
-                        return viewTemplate;
-                    }
+                    return (viewValues) ? tmpl(viewTemplate, viewValues) : viewTemplate;
                 };
             });
 
@@ -45,17 +45,24 @@
     }
 
     function attributesAsObject(target, options) {
+        target = (typeof target == 'object' && target.length) ? target : $(target);
+        target.removeAttr('rel');
         var data = {};
         var attributes = target[0].attributes;
         var attributesString = "";
-        target.removeAttr('rel');
         var element = $("<div>").append(target.clone()).html();
 
         for (var i = 0; i < attributes.length; i++) {
-            attributesString += attributes[i].name + "=\"" + attributes[i].value + "\" ";
+            var attrName = attributes[i].name;
+            var attrValue = attributes[i].value;
 
-            if (attributes[i].value)
-                data[attributes[i].name] = attributes[i].value;
+            attributesString += attrName + "=\"" + attrValue + "\" ";
+
+            if (attrValue) {
+                attrValue = ( attrValue.match(/^\['.*']/) ) ? stringToArray(attrValue) : attrValue;
+                data[attrName] = attrValue;
+                data[attrName.replace(/^data-/, "")] = attrValue;
+            }
         }
 
         data['html'] = $.trim(target.html());
@@ -63,18 +70,24 @@
         data['attributes'] = attributesString;
         data['tagname'] = target.prop('tagName').toLowerCase();
 
-        $.extend(data, target.data());
         $.extend(data, options);
 
         return data;
     }
 
+    function applyComponents() {
+        var elements = $('body [rel]');
+        var components = loadComponents();
+
+        elements.each(function() {
+            var componentName = $(this).attr('rel');
+            var attributes = attributesAsObject(this);
+            var componentInterpoled = components[componentName](attributes);
+            $(this).replaceWith(componentInterpoled);
+        });
+    }
+
     $(function() {
-        var ks = {};
-        ks.components = loadComponents();
-
-        console.log( attributesAsObject( $('input') ) );
-
-        window.ks = ks;
+        applyComponents();
     });    
 })();

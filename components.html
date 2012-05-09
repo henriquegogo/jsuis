@@ -1,21 +1,20 @@
 <script type="text/html" id="input">
     <div class="field">
-        <label><%= label %></label>
-        <input type="text" value="<%= value %>">
+        <label for="<%= id %>"><%= label %></label>
+        <%= element %>
     </div>
 </script>
 
 <script type="text/html" id="checkbox">
     <div class="field">
-        <input type="checkbox" value="<%= value %>">
-        <label><%= label %></label>
+        <label><input type="checkbox"> <%= label %></label>
     </div>
 </script>
 
 <script type="text/html" id="list">
     <ul>
-        <% for (var i in data) { %>
-            <li><%= data[i] %></li>
+        <% for (var i in list) { %>
+            <li><%= list[i] %></li>
         <% } %>
     </ul>
 </script>

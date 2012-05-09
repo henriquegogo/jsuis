@@ -1,1 +1,7 @@
+.field {
+    display: inline-block;
+}
 
+.field label {
+    display: block;
+}
