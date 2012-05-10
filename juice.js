@@ -18,10 +18,16 @@
         return data ? fn( data ) : fn;
     };
 
+    // Helpers
     function stringToArray(string) {
         return (typeof string != "undefined") ? JSON.parse(string.replace(/\'/g, '"')) : [];
     }
 
+    function delegateHelper(selector, events) {
+        $(document).on(events, selector);
+    }
+
+    ////
     function loadComponents() {
         var returnObject = {}
 
@@ -77,7 +83,7 @@
 
     function applyComponents() {
         var elements = $('body [rel]');
-        var components = loadComponents();
+        var components = juice.components;
 
         elements.each(function() {
             var componentName = $(this).attr('rel');
@@ -88,6 +94,11 @@
     }
 
     $(function() {
+        juice = {
+            on: delegateHelper,
+            components: loadComponents()
+        };
+        
         applyComponents();
     });    
 })();

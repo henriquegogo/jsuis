@@ -1,5 +1,10 @@
+br {
+    clear: both;
+}
+
 .field {
-    display: inline-block;
+    float: left;
+    display: block;
 }
 
 .field label {

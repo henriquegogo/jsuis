@@ -1,18 +1,19 @@
 <script type="text/html" id="input">
-    <div class="field">
+    <div class="field input">
         <label for="<%= id %>"><%= label %></label>
         <%= element %>
     </div>
 </script>
 
 <script type="text/html" id="checkbox">
-    <div class="field">
+    <div class="field checkbox">
+        <span>&nbsp;</span>
         <label><input type="checkbox"> <%= label %></label>
     </div>
 </script>
 
 <script type="text/html" id="list">
-    <ul>
+    <ul class="list">
         <% for (var i in list) { %>
             <li><%= list[i] %></li>
         <% } %>
@@ -20,7 +21,7 @@
 </script>
 
 <script type="text/html" id="grid">
-    <table>
+    <table class="grid">
         <thead>
             <tr>
                 <% for (var title in data[0]) { %>

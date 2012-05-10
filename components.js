@@ -1,16 +1,11 @@
-(function input() {
-    $(document).on({
+// Input
+(function() {
+    
+    juice.on("input[type=text]", {
         blur: function() {
             alert("Fez blur");
         }
-    }, "input[type=text]");
+    });
+    
 })()
 
-(function checkbox() {
-})()
-
-(function list() {
-})()
-
-(function grid() {
-})()
