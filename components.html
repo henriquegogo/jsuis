@@ -31,9 +31,9 @@
         </thead>
         <tfoot>
             <tr><td colspan="999999999">
-                <a href="#add">Add</a>
-                |
-                <a href="#remove">Remove</a>
+                <% for (var i in actions) { %>
+                    <a href="<%= actions[i][0] %>"><%= JSON.stringify(actions[i]) %></a>
+                <% } %>
             </td></tr>
         </tfoot>
         <tbody>
