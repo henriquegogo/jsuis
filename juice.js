@@ -65,7 +65,7 @@
             attributesString += attrName + "=\"" + attrValue + "\" ";
 
             if (attrValue) {
-                attrValue = ( attrValue.match(/^\['.*']/) ) ? stringToArray(attrValue) : attrValue;
+                attrValue = ( attrValue.match(/^\[.*]/) ) ? stringToArray(attrValue) : attrValue;
                 data[attrName] = attrValue;
                 data[attrName.replace(/^data-/, "")] = attrValue;
             }

@@ -24,16 +24,23 @@
     <table class="grid">
         <thead>
             <tr>
-                <% for (var title in data[0]) { %>
-                    <th><%= title %></th>
+                <% for (var col in titles) { %>
+                    <th><%= titles[col] %></th>
                 <% } %>
             </tr>
         </thead>
+        <tfoot>
+            <tr><td colspan="999999999">
+                <a href="#add">Add</a>
+                |
+                <a href="#remove">Remove</a>
+            </td></tr>
+        </tfoot>
         <tbody>
-            <% for (var line in data) { %>
+            <% for (var line in rows) { %>
                 <tr>
-                    <% for (var col in data[line]) { %>
-                        <td><%= data[line][col] %></td>
+                    <% for (var col in rows[line]) { %>
+                        <td><%= rows[line][col] %></td>
                     <% } %>
                 </tr>
             <% } %>
