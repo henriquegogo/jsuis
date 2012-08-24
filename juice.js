@@ -40,7 +40,7 @@
                 var viewTemplate = element.html();
 
                 returnObject[id] = function(viewValues) {
-                    return (viewValues) ? tmpl(viewTemplate, viewValues) : viewTemplate;
+                    return (viewValues) ? $(tmpl(viewTemplate, viewValues)) : viewTemplate;
                 };
             });
 
@@ -96,7 +96,8 @@
     $(function() {
         juice = {
             on: delegateHelper,
-            components: loadComponents()
+            components: loadComponents(),
+            applyComponents: applyComponents
         };
         
         applyComponents();

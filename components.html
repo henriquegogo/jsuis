@@ -1,7 +1,7 @@
 <script type="text/html" id="input">
     <div class="field input">
         <label for="<%= id %>"><%= label %></label>
-        <%= element %>
+        <input type="text" id="<%= id %>" name="<%= name %>" value="<%= value %>">
     </div>
 </script>
 
@@ -32,7 +32,7 @@
         <tfoot>
             <tr><td colspan="999999999">
                 <% for (var i in actions) { %>
-                    <a href="<%= actions[i][0] %>"><%= JSON.stringify(actions[i]) %></a>
+                    <a href="<%= actions[i].href %>"><%= actions[i].text %></a>
                 <% } %>
             </td></tr>
         </tfoot>
