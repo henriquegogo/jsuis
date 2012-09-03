@@ -37,10 +37,21 @@
             components.each(function() {
                 var element = $(this);
                 var id = element.attr("id");
+                var helper = element.data("helper");
                 var viewTemplate = element.html();
 
-                returnObject[id] = function(viewValues) {
-                    return (viewValues) ? $(tmpl(viewTemplate, viewValues)) : viewTemplate;
+                returnObject[id] = function() {
+                    var viewVariables = arguments[0];
+                    
+                    if (viewVariables) {
+                        var templateInterpoled = $(tmpl(viewTemplate, viewVariables));
+                        templateInterpoled.data(viewVariables);
+                    
+                        return templateInterpoled;
+                    
+                    } else {
+                        return helper;
+                    }
                 };
             });
 

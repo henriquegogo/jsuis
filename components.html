@@ -1,18 +1,18 @@
-<script type="text/html" id="input">
+<script type="text/html" id="input" data-helper="{id: '', name: '', label: '', value: ''}">
     <div class="field input">
         <label for="<%= id %>"><%= label %></label>
         <input type="text" id="<%= id %>" name="<%= name %>" value="<%= value %>">
     </div>
 </script>
 
-<script type="text/html" id="checkbox">
+<script type="text/html" id="checkbox" data-helper="{label: ''}">
     <div class="field checkbox">
         <span>&nbsp;</span>
         <label><input type="checkbox"> <%= label %></label>
     </div>
 </script>
 
-<script type="text/html" id="list">
+<script type="text/html" id="list" data-helper="{list: []}">
     <ul class="list">
         <% for (var i in list) { %>
             <li><%= list[i] %></li>
@@ -20,7 +20,11 @@
     </ul>
 </script>
 
-<script type="text/html" id="grid">
+<script type="text/html" id="link" data-helper="{text: '', click: function() {} }">
+    <a href="javascript:void(0)" onclick="$(this).data().click()"><%= text %></a>
+</script>
+
+<script type="text/html" id="grid" data-helper="{titles: [], rows: [{}], actions: [{text: '', click: function() {} }] }">
     <table class="grid">
         <thead>
             <tr>
@@ -32,7 +36,7 @@
         <tfoot>
             <tr><td colspan="999999999">
                 <% for (var i in actions) { %>
-                    <a href="<%= actions[i].href %>"><%= actions[i].text %></a>
+                    <a href="javascript:void(0)" onclick="$(this).data()"><%= actions[i].text %></a>
                 <% } %>
             </td></tr>
         </tfoot>
