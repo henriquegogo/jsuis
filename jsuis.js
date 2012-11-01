@@ -94,7 +94,7 @@
 
     function applyComponents() {
         var elements = $('body [rel]');
-        var components = juice.components;
+        var components = jUIce;
 
         elements.each(function() {
             var componentName = $(this).attr('rel');
@@ -105,11 +105,7 @@
     }
 
     $(function() {
-        juice = {
-            on: delegateHelper,
-            components: loadComponents(),
-            applyComponents: applyComponents
-        };
+        jUIce = loadComponents();
         
         applyComponents();
     });    
