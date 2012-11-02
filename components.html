@@ -1,18 +1,18 @@
-<script type="text/html" id="input" data-helper="{id: '', name: '', label: '', value: ''}">
+<script type="text/html" id="input">
     <div class="field input">
         <label for="<%= id %>"><%= label %></label>
         <input type="text" id="<%= id %>" name="<%= name %>" value="<%= value %>">
     </div>
 </script>
 
-<script type="text/html" id="checkbox" data-helper="{label: ''}">
+<script type="text/html" id="checkbox">
     <div class="field checkbox">
         <span>&nbsp;</span>
         <label><input type="checkbox"> <%= label %></label>
     </div>
 </script>
 
-<script type="text/html" id="list" data-helper="{list: []}">
+<script type="text/html" id="list">
     <ul class="list">
         <% for (var i in list) { %>
             <li><%= list[i] %></li>
@@ -20,11 +20,11 @@
     </ul>
 </script>
 
-<script type="text/html" id="link" data-helper="{text: '', click: function() {} }">
+<script type="text/html" id="link">
     <a href="javascript:void(0)" onclick="$(this).data().click()"><%= text %></a>
 </script>
 
-<script type="text/html" id="grid" data-helper="{titles: [], rows: [{}], actions: [{text: '', click: function() {} }] }">
+<script type="text/html" id="grid">
     <table class="grid">
         <thead>
             <tr>

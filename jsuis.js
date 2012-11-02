@@ -23,10 +23,6 @@
         return (typeof string != "undefined") ? JSON.parse(string.replace(/\'/g, '"')) : [];
     }
 
-    function delegateHelper(selector, events) {
-        $(document).on(events, selector);
-    }
-
     ////
     function loadComponents() {
         var returnObject = {}
@@ -36,25 +32,25 @@
             
             components.each(function() {
                 var element = $(this);
-                var id = element.attr("id");
-                var helper = element.data("helper");
+                var componentName = element.attr("id");
                 var viewTemplate = element.html();
+                var templateInterpoled = $();
 
-                returnObject[id] = function() {
-                    var viewVariables = arguments[0];
+                $.extend(returnObject[componentName], element.data());
+
+                returnObject[componentName] = function() {
+                    var viewVariables = arguments[0] || {};
                     
-                    if (viewVariables) {
-                        var templateInterpoled = $(tmpl(viewTemplate, viewVariables));
-                        templateInterpoled.data(viewVariables);
-                    
-                        return templateInterpoled;
-                    
-                    } else {
-                        return helper;
-                    }
+                    var templateInterpoled = $(tmpl(viewTemplate, viewVariables));
+                    templateInterpoled.data(viewVariables);
+                    templateInterpoled.data("_template", $.trim(viewTemplate));
+                    templateInterpoled.data("interpolate", function(viewVariables) {
+                        return $(tmpl(viewTemplate, viewVariables));
+                    });
+                
+                    return templateInterpoled;
                 };
             });
-
         } });
 
         $.getScript("components.js");
@@ -94,7 +90,7 @@
 
     function applyComponents() {
         var elements = $('body [rel]');
-        var components = jUIce;
+        var components = JSUIS;
 
         elements.each(function() {
             var componentName = $(this).attr('rel');
@@ -105,7 +101,7 @@
     }
 
     $(function() {
-        jUIce = loadComponents();
+        JSUIS = loadComponents();
         
         applyComponents();
     });    
