@@ -106,3 +106,48 @@
         applyComponents();
     });    
 })();
+
+function Field() {
+    this.width;
+    this.height;
+    
+    this.show = function() {
+        var element = document.createElement("div");
+        element.className = "field";
+        
+        return element;
+    }
+}
+Field.prototype.setWidth = function(width) {
+    this.width = width;
+}
+Field.prototype.setHeight = function(height) {
+    this.height = height;
+}
+
+function TextField() {
+    this.text;
+}
+TextField.prototype = Field.prototype;
+TextField.prototype.setText = function(text) {
+    this.text = text;
+}
+
+function InputField() {
+    this.maxLength;
+}
+InputField.prototype = Field.prototype;
+InputField.prototype.setMaxLength = function(maxLength) {
+    this.maxLength = maxLength;
+}
+
+function Layout() {
+}
+
+function VerticalLayout() {
+}
+VerticalLayout.prototype = Layout.prototype;
+
+function HorizontalLayout() {
+}
+HorizontalLayout.prototype = Layout.prototype;
