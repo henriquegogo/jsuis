@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+            <title>Title</title>
+    </head>
+    <body>
+        <div class="field">
+            <label>Henrique Gogó</label>
+            <input type="text" maxlength="">
+        </div>
+    </body>
+    <script>
+    function Field() {
+        this.width;
+        this.height;    
+    }
+    Field.prototype.show = function() {
+        var element = document.createElement("div");
+        element.innerHTML = "<div class='field'></div>";
+
+        return element.firstChild;
+    }
+    Field.prototype.setWidth = function(width) {
+        this.width = width;
+    }
+    Field.prototype.setHeight = function(height) {
+        this.height = height;
+    }
+
+    function TextField() {
+        this.text = "";
+    }
+    TextField.prototype = new Field();
+    TextField.prototype.show = function() {
+        var element = Field.prototype.show.call(this);
+        element.innerHTML = "<span>" + this.text + "</span>";
+
+        return element;
+    }
+    TextField.prototype.setText = function(text) {
+        this.text = text;
+    }
+
+    function InputField() {
+        this.maxLength = "";
+        this.label = "";
+    }
+    InputField.prototype = new Field();
+    InputField.prototype.show = function() {
+        var element = Field.prototype.show.call(this);
+        element.innerHTML = "<label>" + this.label + "</label>";
+        element.innerHTML += "<input type='text' maxlength='" + this.maxLength + "'>";
+
+        return element;
+    }
+    InputField.prototype.setMaxLength = function(maxLength) {
+        this.maxLength = maxLength;
+    }
+    InputField.prototype.setLabel = function(label) {
+        this.label = label;
+    }
+
+    function Layout() {
+    }
+
+    function VerticalLayout() {
+    }
+    VerticalLayout.prototype = new Layout();
+
+    function HorizontalLayout() {
+    }
+    HorizontalLayout.prototype = Layout.prototype;
+    </script>
+</html>
