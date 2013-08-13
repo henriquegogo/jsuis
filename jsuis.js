@@ -109,14 +109,13 @@
 
 function Field() {
     this.width;
-    this.height;
-    
-    this.show = function() {
-        var element = document.createElement("div");
-        element.className = "field";
-        
-        return element;
-    }
+    this.height;    
+}
+Field.prototype.show = function() {
+    var element = document.createElement("div");
+    element.innerHTML = "<div class='field'></div>";
+
+    return element.firstChild;
 }
 Field.prototype.setWidth = function(width) {
     this.width = width;
@@ -126,17 +125,29 @@ Field.prototype.setHeight = function(height) {
 }
 
 function TextField() {
-    this.text;
+    this.text = "";
 }
-TextField.prototype = Field.prototype;
+TextField.prototype = new Field();
+TextField.prototype.show = function() {
+    var element = Field.prototype.show.call(this);
+    element.innerHTML = "<span>" + this.text + "</span>";
+
+    return element;
+}
 TextField.prototype.setText = function(text) {
     this.text = text;
 }
 
 function InputField() {
-    this.maxLength;
+    this.maxLength = "";
 }
-InputField.prototype = Field.prototype;
+InputField.prototype = new Field();
+InputField.prototype.show = function() {
+    var element = Field.prototype.show.call(this);
+    element.innerHTML = "<input type='text' maxlength='" + this.maxLength + "'>";
+
+    return element;
+}
 InputField.prototype.setMaxLength = function(maxLength) {
     this.maxLength = maxLength;
 }
@@ -146,7 +157,7 @@ function Layout() {
 
 function VerticalLayout() {
 }
-VerticalLayout.prototype = Layout.prototype;
+VerticalLayout.prototype = new Layout();
 
 function HorizontalLayout() {
 }
