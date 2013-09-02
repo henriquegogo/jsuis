@@ -13,12 +13,12 @@
     </body>
     <script>
     function Field() {
-        this.width;
-        this.height;    
+        this.width = 100;
+        this.height = 100;    
     }
     Field.prototype.show = function() {
         var element = document.createElement("div");
-        element.innerHTML = "<div class='field'></div>";
+        element.innerHTML = "<div class='field' style='width: "+this.width+"px; height: "+this.height+"px'></div>";
 
         return element.firstChild;
     }
@@ -30,9 +30,10 @@
     }
 
     function TextField() {
+        Field.call(this);
         this.text = "";
     }
-    TextField.prototype = new Field();
+    TextField.prototype = Object.create(Field.prototype);
     TextField.prototype.show = function() {
         var element = Field.prototype.show.call(this);
         element.innerHTML = "<span>" + this.text + "</span>";
@@ -44,10 +45,11 @@
     }
 
     function InputField() {
+        Field.call(this);
         this.maxLength = "";
         this.label = "";
     }
-    InputField.prototype = new Field();
+    InputField.prototype = Object.create(Field.prototype);
     InputField.prototype.show = function() {
         var element = Field.prototype.show.call(this);
         element.innerHTML = "<label>" + this.label + "</label>";
@@ -66,11 +68,13 @@
     }
 
     function VerticalLayout() {
+        Layout.call(this);
     }
-    VerticalLayout.prototype = new Layout();
+    VerticalLayout.prototype = Object.create(Layout.prototype);
 
     function HorizontalLayout() {
+        Layout.call(this);
     }
-    HorizontalLayout.prototype = Layout.prototype;
+    HorizontalLayout.prototype = Object.create(Layout.prototype);
     </script>
 </html>
