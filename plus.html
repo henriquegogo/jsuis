@@ -12,61 +12,58 @@
     function ElementRoot(elementRoot) {
         this.elementRoot = elementRoot[0][0] || document.createElement("div");
     }
+
     function Field() {
         ElementRoot.call(this, arguments);
-        var methods = Field.prototype;
-
+        
         this.width = 100;
         this.height = 100;
+    }
+    Field.prototype.show = function() {
+        var tempContainer = document.createElement("div");
+        tempContainer.innerHTML = "<div class='field' style='width: "+this.width+"px; height: "+this.height+"px'></div>";
 
-        methods.show = function() {
-            var tempContainer = document.createElement("div");
-            tempContainer.innerHTML = "<div class='field' style='width: "+this.width+"px; height: "+this.height+"px'></div>";
+        return tempContainer.firstChild;
+    }
+    Field.prototype.sync = function() {
+        var tempContainer = document.createElement("div");
+        tempContainer.appendChild(this.show());
+        
+        this.elementRoot.innerHTML = tempContainer.innerHTML;
+    };
+    Field.prototype.set = function(key, value) {
+        this[key] = value;
 
-            return tempContainer.firstChild;
-        }
-        methods.sync = function() {
-            var tempContainer = document.createElement("div");
-            tempContainer.appendChild(this.show());
-            
-            this.elementRoot.innerHTML = tempContainer.innerHTML;
-        }
-        methods.set = function(key, value) {
-            this[key] = value;
-
-            this.sync();
-            return this;
-        }
+        this.sync();
+        return this;
     }
 
     function TextField() {
         Field.call(this, arguments);
-        var methods = TextField.prototype = Object.create(Field.prototype);
 
         this.text = "";
+    }
+    TextField.prototype = Object.create(Field.prototype);
+    TextField.prototype.show = function() {
+        var element = Field.prototype.show.call(this);
+        element.innerHTML = "<span>" + this.text + "</span>";
 
-        methods.show = function() {
-            var element = Field.prototype.show.call(this);
-            element.innerHTML = "<span>" + this.text + "</span>";
-
-            return element;
-        }
+        return element;
     }
 
     function InputField() {
         Field.call(this, arguments);
-        var methods = InputField.prototype = Object.create(Field.prototype);
 
         this.maxLength = "";
         this.label = "";
+    }
+    InputField.prototype = Object.create(Field.prototype);
+    InputField.prototype.show = function() {
+        var element = Field.prototype.show.call(this);
+        element.innerHTML = "<label>" + this.label + "</label>";
+        element.innerHTML += "<input type='text' maxlength='" + this.maxLength + "'>";
 
-        methods.show = function() {
-            var element = Field.prototype.show.call(this);
-            element.innerHTML = "<label>" + this.label + "</label>";
-            element.innerHTML += "<input type='text' maxlength='" + this.maxLength + "'>";
-
-            return element;
-        }
+        return element;
     }
     
     function Layout() {
@@ -74,12 +71,12 @@
 
     function VerticalLayout() {
         Layout.call(this, arguments);
-        var methods = VerticalLayout.prototype = Object.create(Layout.prototype);
     }
+    VerticalLayout.prototype = Object.create(Layout.prototype);
 
     function HorizontalLayout() {
         Layout.call(this, arguments);
-        var methods = HorizontalLayout.prototype = Object.create(Layout.prototype);
     }
+    HorizontalLayout.prototype = Object.create(Layout.prototype);
     </script>
 </html>
